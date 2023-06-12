@@ -1,5 +1,6 @@
 const socket = io();
 
 socket.on('ping', () =>{
-    console.log("escuchando")
+    console.log("ping")
+    socket.emit("pong")
 })
