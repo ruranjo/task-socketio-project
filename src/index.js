@@ -18,9 +18,8 @@ app.use(express.static( __dirname + '/public'))
 io.on('connection',(socket) => {
     console.log("conecion establecidad:", socket.id)
 
-    socket.emit("ping")
-    socket.on("pong", () =>{
-        console.log("pong")
+    socket.on("client:newnote", data =>{
+        console.log(data)
     })
 })
 
