@@ -10,5 +10,6 @@ const saveNote = (title, description) => {
     console.log(title, description, ":)")
 };
 
+socket.on('server:loadNote', (notes) => toListNotes(notes))
 
 socket.on('server:setNote', (note) => appendNote(note))

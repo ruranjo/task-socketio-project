@@ -15,3 +15,12 @@ const appendNote = note => {
     </div>`
 }
 
+const toListNotes = (notes) =>{
+    notes.map(note => (
+        appendNote(note)
+        ))
+}
+
+
+
+
