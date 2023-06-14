@@ -10,6 +10,10 @@ const saveNote = (title, description) => {
     console.log(title, description, ":)")
 };
 
-socket.on('server:loadNote', (notes) => toListNotes(notes))
+const deleteNote = (id) =>{
+    socket.emit("client:deleteNote",id)
+}
 
-socket.on('server:setNote', (note) => appendNote(note))
+socket.on('server:renderNotes', (notes) => renderNotes(notes))
+
+socket.on('server:setNote', (note) => setNote(note))

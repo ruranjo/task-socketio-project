@@ -12,7 +12,7 @@ const __dirname = path.dirname(__filename);
 const app = express()
 const server = http.createServer(app)
 const io = new WebSocketServer(server)
-const notes = []
+let notes = []
 
 app.use(express.static( __dirname + '/public'))
 
@@ -20,7 +20,7 @@ app.use(express.static( __dirname + '/public'))
 io.on('connection',(socket) => {
     console.log("conecion establecidad:", socket.id)
     
-    socket.emit("server:loadNote", notes)
+    socket.emit("server:renderNotes", notes)
 
     socket.on("client:newNote", newNote =>{
         const idv4 = uuidv4(); // ⇨ '9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d'
@@ -28,6 +28,12 @@ io.on('connection',(socket) => {
         notes.push(objNote)
         socket.emit("server:setNote",objNote)
     })
+
+    socket.on("client:deleteNote", id =>{
+        notes = notes.filter((note) => note.id !== id)
+        socket.emit("server:renderNotes", notes)
+    })
+
 })
 
 server.listen("3000")
