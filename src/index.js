@@ -26,12 +26,12 @@ io.on('connection',(socket) => {
         const idv4 = uuidv4(); // ⇨ '9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d'
         const objNote = {...newNote, id : idv4}
         notes.push(objNote)
-        socket.emit("server:setNote",objNote)
+        io.emit("server:setNote",objNote)
     })
 
     socket.on("client:deleteNote", id =>{
         notes = notes.filter((note) => note.id !== id)
-        socket.emit("server:renderNotes", notes)
+        io.emit("server:renderNotes", notes)
     })
 
 })

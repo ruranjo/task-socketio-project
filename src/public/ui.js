@@ -9,7 +9,6 @@ const noteUi = note => {
             <h1 class="h3 card-title">${note.title}</h1> 
             <div>
                 <button class="btn btn-danger delete" data-id="${note.id}">delete</button>
-                <button class="btn btn-secundary data-id="${note.id}">update</button>
             </div>
         </div>
         <p>${note.description}</p>
